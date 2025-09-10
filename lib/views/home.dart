@@ -61,22 +61,40 @@ class Home extends StatelessWidget {
           ),
           Expanded(child: 
             SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.all(15),
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                MoviesCard(imageMovies: "assets/images/images.webp", titleMovies: "fast and furious",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
-                MoviesCard(imageMovies: "assets/images/2.jpg", titleMovies: "avengers",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
-                MoviesCard(imageMovies: "assets/images/3.jpg", titleMovies: "spiderman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
-                MoviesCard(imageMovies: "assets/images/4.jpg", titleMovies: "batman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
-                MoviesCard(imageMovies: "assets/images/5.jpg", titleMovies: "superman", texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/F1_movies_P.webp", titleMovies: "fast and furious",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/F1_movies_P.webp", titleMovies: "avengers",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/F1_movies_P.webp", titleMovies: "spiderman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/F1_movies_P.webp", titleMovies: "batman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/F1_movies_P.webp", titleMovies: "superman", texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
               ],
             ),
+            
           )
           )
+        ],    
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
-        
-        
       ),
     );
   }
