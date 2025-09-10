@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/widget/movies_card.dart';
 
 
 class Home extends StatelessWidget {
@@ -58,7 +59,24 @@ class Home extends StatelessWidget {
               )
             ],
           ),
+          Expanded(child: 
+            SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 30),
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                MoviesCard(imageMovies: "assets/images/images.webp", titleMovies: "fast and furious",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/2.jpg", titleMovies: "avengers",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/3.jpg", titleMovies: "spiderman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/4.jpg", titleMovies: "batman",  texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+                MoviesCard(imageMovies: "assets/images/5.jpg", titleMovies: "superman", texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",),
+              ],
+            ),
+          )
+          )
         ],
+        
+        
       ),
     );
   }
