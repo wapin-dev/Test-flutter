@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies/ViewModels/movies_view_model.dart';
 import 'package:movies/views/home.dart';
 import 'package:movies/views/details.dart';
-import 'package:movies/widget/navbar.dart';
+import 'package:provider/provider.dart';
+// import 'package:movies/widget/navbar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MoviesViewModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

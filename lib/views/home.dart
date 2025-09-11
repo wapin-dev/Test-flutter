@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:movies/widget/movies_card.dart';
 // import 'package:movies/widget/navbar.dart';
 import 'package:movies/widget/movieSwipe.dart';
+import 'package:movies/ViewModels/movies_view_model.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final moviesViewModel = Provider.of<MoviesViewModel>(context);
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -76,18 +80,28 @@ class Home extends StatelessWidget {
               },
             ),
           ),
+          TextButton(
+            onPressed: () => print(moviesViewModel.movies[0]),
+            child: Text("data"),
+          ),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(15),
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  MoviesCard(
-                    imageMovies: "assets/images/F1_movies_P.webp",
-                    titleMovies: "fast and furious",
+                  /* MoviesCard(
+                    imageMovies:
+                        moviesViewModel.movies.isNotEmpty
+                            ? moviesViewModel.movies[0].results[0].posterPath
+                            : "assets/images/F1_movies_P.webp",
+                    titleMovies:
+                        moviesViewModel.movies.isNotEmpty
+                            ? moviesViewModel.movies[0].results[0].name
+                            : "Loading...",
                     texte:
                         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
-                  ),
+                  ), */
                   MoviesCard(
                     imageMovies: "assets/images/F1_movies_P.webp",
                     titleMovies: "avengers",

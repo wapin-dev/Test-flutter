@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:movies/widget/navbar.dart';
+// import 'package:movies/widget/navbar.dart';
 
 class Details extends StatelessWidget {
-  const Details({Key? key}) : super(key: key);  
+  const Details({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Details Page"),
-      ),
-      body: Center(
-        child: Text("Details Content Here"),
-      ),
-
-      
+      appBar: AppBar(title: Text("Details Page")),
+      body: Center(child: Text("Details Content Here")),
     );
   }
 }
