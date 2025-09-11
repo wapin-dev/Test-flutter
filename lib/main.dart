@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/views/home.dart';
+import 'package:movies/views/details.dart';
+import 'package:movies/widget/navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: Home(),
+      initialRoute: "/home",
+      routes: {
+        "/home": (context) => Home(),
+        "/details": (context) => Details(),
+      },
     );
   }
 }

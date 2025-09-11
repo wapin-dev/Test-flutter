@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "819262970755",
+    "project_id": "test-flutter-bee30",
+    "storage_bucket": "test-flutter-bee30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819262970755:android:e747aa97bc6fd68520f4b6",
+        "android_client_info": {
+          "package_name": "com.example.movies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcZrnzTdzI3xqx3ry4CngizEP4lYpm8_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

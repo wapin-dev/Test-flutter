@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-
 class MoviesCard extends StatelessWidget {
-
   final String imageMovies;
   final String titleMovies;
   final String texte;
 
-  const MoviesCard({super.key, required this.imageMovies, required this.titleMovies, required this.texte});
-  
+  const MoviesCard({
+    super.key,
+    required this.imageMovies,
+    required this.titleMovies,
+    required this.texte,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,7 @@ class MoviesCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: 
-              Container(
+              child: Container(
                 margin: EdgeInsets.all(5),
                 width: 150,
                 height: 150,
@@ -28,10 +29,10 @@ class MoviesCard extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
                     image: AssetImage(imageMovies),
-                    fit: BoxFit.cover
-                  )
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              )
+              ),
             ),
             Expanded(
               flex: 2,
@@ -39,41 +40,49 @@ class MoviesCard extends StatelessWidget {
                 margin: EdgeInsets.all(5),
                 width: 150,
                 height: 250,
-                decoration: BoxDecoration(
-                ),
+                decoration: BoxDecoration(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(titleMovies, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
-                    SizedBox(height: 20,),
-                    Text(texte, style: TextStyle(fontSize: 15, color: Colors.white),),
-                    SizedBox(height: 20,),
+                    Text(
+                      titleMovies,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      texte,
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                    SizedBox(height: 20),
                     Container(
                       width: 100,
                       height: 40,
-                      
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.deepPurpleAccent
+                        color: Colors.deepPurpleAccent,
                       ),
-                      child: TextButton(onPressed: (){}, child: Text("Regarder", style: TextStyle(color: Colors.white),)
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Regarder",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
-                    )
                   ],
-              )
-            ),
+                ),
+              ),
             ),
           ],
         ),
-        Container(
-          width: double.infinity,
-          height: 1,
-          color: Colors.white,
-        ),
+        Container(width: double.infinity, height: 1, color: Colors.white),
       ],
     );
-
-    
   }
 }
