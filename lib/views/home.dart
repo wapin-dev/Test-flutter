@@ -5,8 +5,26 @@ import 'package:movies/widget/movieSwipe.dart';
 import 'package:movies/ViewModels/movies_view_model.dart';
 import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    // Charger les films automatiquement au démarrage
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final moviesViewModel = Provider.of<MoviesViewModel>(
+        context,
+        listen: false,
+      );
+      moviesViewModel.fetch();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,26 +89,18 @@ class Home extends StatelessWidget {
             width: double.infinity,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Movieswipe(
-                  imageMovies: "assets/images/images.webp",
-                  linkMovies: "/details",
-                );
-              },
+              itemCount: moviesViewModel.movies.length,
+              itemBuilder:
+                  (context, index) => Movieswipe(
+                    imageMovies:
+                        moviesViewModel.movies[index].posterPath.isNotEmpty
+                            ? "https://image.tmdb.org/t/p/w500${moviesViewModel.movies[index].posterPath}"
+                            : "assets/images/F1_movies_P.webp",
+                    linkMovies: moviesViewModel.movies[index].id.toString(),
+                  ),
             ),
           ),
-          TextButton(
-            onPressed: () async {
-              await moviesViewModel.fetch();
-              if (moviesViewModel.movies.length > 3) {
-                print(moviesViewModel.movies[0].title);
-              } else {
-                print("Pas encore assez de films !");
-              }
-            },
-            child: Text("fonctionne ?"),
-          ),
+          //liste des films
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(15),
@@ -98,44 +108,24 @@ class Home extends StatelessWidget {
               child: Column(
                 children: [
                   ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: moviesViewModel.movies.length,
                     itemBuilder:
                         (context, index) => MoviesCard(
                           imageMovies:
-                              moviesViewModel.movies.isNotEmpty
-                                  ? moviesViewModel.movies[0].backdropPath
+                              moviesViewModel
+                                      .movies[index]
+                                      .posterPath
+                                      .isNotEmpty
+                                  ? "https://image.tmdb.org/t/p/w500${moviesViewModel.movies[index].posterPath}"
                                   : "assets/images/F1_movies_P.webp",
-                          titleMovies:
-                              moviesViewModel.movies.isNotEmpty
-                                  ? moviesViewModel.movies[index].title
-                                  : "Loading...",
+                          titleMovies: moviesViewModel.movies[index].title,
                           texte:
-                              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
+                              moviesViewModel.movies[index].overview.isNotEmpty
+                                  ? moviesViewModel.movies[index].overview
+                                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
                         ),
-                  ),
-                  MoviesCard(
-                    imageMovies: "assets/images/F1_movies_P.webp",
-                    titleMovies: "avengers",
-                    texte:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
-                  ),
-                  MoviesCard(
-                    imageMovies: "assets/images/F1_movies_P.webp",
-                    titleMovies: "spiderman",
-                    texte:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
-                  ),
-                  MoviesCard(
-                    imageMovies: "assets/images/F1_movies_P.webp",
-                    titleMovies: "batman",
-                    texte:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
-                  ),
-                  MoviesCard(
-                    imageMovies: "assets/images/F1_movies_P.webp",
-                    titleMovies: "superman",
-                    texte:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
                   ),
                 ],
               ),

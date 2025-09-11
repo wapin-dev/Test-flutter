@@ -28,7 +28,9 @@ class MoviesCard extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
-                    image: AssetImage(imageMovies),
+                    image: imageMovies.startsWith('http') 
+                        ? NetworkImage(imageMovies) 
+                        : AssetImage(imageMovies) as ImageProvider,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -57,6 +59,8 @@ class MoviesCard extends StatelessWidget {
                     Text(
                       texte,
                       style: TextStyle(fontSize: 15, color: Colors.white),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                     ),
                     SizedBox(height: 20),
                     Container(
