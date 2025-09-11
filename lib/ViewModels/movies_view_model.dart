@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:movies/models/api_model.dart';
+import 'package:movies/services/apiService.dart';
 
 class MoviesViewModel extends ChangeNotifier {
-  List<MovieDetail> _movies = [];
+  List<MovieDetail> movies = [];
   bool _isLoading = false;
   String? _errorMessage;
 
-  List<MovieDetail> get movies => _movies;
+  List<MovieDetail> get _movies => movies;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
+  Future<void> fetch() async {
+    try {
+      setLoading(true);
+      final fetchedMovies = await ApiService.fetchMovies();
+      setMovies(fetchedMovies);
+      setErrorMessage(null);
+    } catch (e) {
+      setErrorMessage(e.toString());
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // try {
+  //   setLoading(true);
+  //   final fetchedMovies = await ApiService.fetchMovies();
+  //   setMovies(fetchedMovies);
+  //   setErrorMessage(null);
+  // } catch (e) {
+  //   setErrorMessage(e.toString());
+  // } finally {
+  //   setLoading(false);
+  // }
+
   void setMovies(List<MovieDetail> movies) {
-    _movies = movies;
+    this.movies = movies;
     notifyListeners();
   }
 
