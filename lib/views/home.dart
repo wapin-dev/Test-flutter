@@ -81,8 +81,15 @@ class Home extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () => print(moviesViewModel.movies[0]),
-            child: Text("data"),
+            onPressed: () async {
+              await moviesViewModel.fetch();
+              if (moviesViewModel.movies.length > 3) {
+                print(moviesViewModel.movies[0].title);
+              } else {
+                print("Pas encore assez de films !");
+              }
+            },
+            child: Text("fonctionne ?"),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -90,18 +97,22 @@ class Home extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  /* MoviesCard(
-                    imageMovies:
-                        moviesViewModel.movies.isNotEmpty
-                            ? moviesViewModel.movies[0].results[0].posterPath
-                            : "assets/images/F1_movies_P.webp",
-                    titleMovies:
-                        moviesViewModel.movies.isNotEmpty
-                            ? moviesViewModel.movies[0].results[0].name
-                            : "Loading...",
-                    texte:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
-                  ), */
+                  ListView.builder(
+                    itemCount: moviesViewModel.movies.length,
+                    itemBuilder:
+                        (context, index) => MoviesCard(
+                          imageMovies:
+                              moviesViewModel.movies.isNotEmpty
+                                  ? moviesViewModel.movies[0].backdropPath
+                                  : "assets/images/F1_movies_P.webp",
+                          titleMovies:
+                              moviesViewModel.movies.isNotEmpty
+                                  ? moviesViewModel.movies[index].title
+                                  : "Loading...",
+                          texte:
+                              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae ",
+                        ),
+                  ),
                   MoviesCard(
                     imageMovies: "assets/images/F1_movies_P.webp",
                     titleMovies: "avengers",

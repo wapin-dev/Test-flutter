@@ -7,7 +7,6 @@ class MoviesViewModel extends ChangeNotifier {
   bool _isLoading = false;
   String? _errorMessage;
 
-  List<MovieDetail> get _movies => movies;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
@@ -23,17 +22,6 @@ class MoviesViewModel extends ChangeNotifier {
       setLoading(false);
     }
   }
-
-  // try {
-  //   setLoading(true);
-  //   final fetchedMovies = await ApiService.fetchMovies();
-  //   setMovies(fetchedMovies);
-  //   setErrorMessage(null);
-  // } catch (e) {
-  //   setErrorMessage(e.toString());
-  // } finally {
-  //   setLoading(false);
-  // }
 
   void setMovies(List<MovieDetail> movies) {
     this.movies = movies;
